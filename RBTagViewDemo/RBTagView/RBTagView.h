@@ -23,8 +23,11 @@ CG_INLINE RBMargin RBMarginMake(CGFloat sideMargin, CGFloat topMargin) {
 @interface RBTag : UIButton
 
 @property (copy, nonatomic) NSString *title;
+@property (assign, nonatomic) UIImage *image;
 @property (assign, nonatomic) NSUInteger index;
+@property (assign, nonatomic) BOOL change;
 + (instancetype)tagWithTitle:(NSString *)title;
++ (instancetype)tagWithTitle:(NSString *)title withImage:(UIImage *)image changeImageTitlePosition:(BOOL)change;
 
 @end
 
@@ -36,6 +39,8 @@ CG_INLINE RBMargin RBMarginMake(CGFloat sideMargin, CGFloat topMargin) {
 
 @property (weak, nonatomic) id<RBTagViewDelegate> tagDelegate;
 @property (weak, nonatomic) id<RBTagViewDataSource> dataSource;
+@property (assign, nonatomic) BOOL singleLine;
+
 - (void)reloadData;
 
 @end

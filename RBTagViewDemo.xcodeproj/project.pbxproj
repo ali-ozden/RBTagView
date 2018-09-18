@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B51769CD215107B800DF83E7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B51769CC215107B800DF83E7 /* Media.xcassets */; };
 		C020CBB71C25CA630061FAE6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C020CBB61C25CA630061FAE6 /* main.m */; };
 		C020CBBA1C25CA630061FAE6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C020CBB91C25CA630061FAE6 /* AppDelegate.m */; };
 		C020CBBD1C25CA630061FAE6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C020CBBC1C25CA630061FAE6 /* ViewController.m */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B51769CC215107B800DF83E7 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		C020CBB21C25CA630061FAE6 /* RBTagViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RBTagViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C020CBB61C25CA630061FAE6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C020CBB81C25CA630061FAE6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				C020CBBC1C25CA630061FAE6 /* ViewController.m */,
 				C020CBBE1C25CA630061FAE6 /* Main.storyboard */,
 				C020CBC11C25CA630061FAE6 /* Assets.xcassets */,
+				B51769CC215107B800DF83E7 /* Media.xcassets */,
 				C020CBC31C25CA630061FAE6 /* LaunchScreen.storyboard */,
 				C020CBC61C25CA640061FAE6 /* Info.plist */,
 				C020CBB51C25CA630061FAE6 /* Supporting Files */,
@@ -151,6 +154,7 @@
 			files = (
 				C020CBC51C25CA630061FAE6 /* LaunchScreen.storyboard in Resources */,
 				C020CBC21C25CA630061FAE6 /* Assets.xcassets in Resources */,
+				B51769CD215107B800DF83E7 /* Media.xcassets in Resources */,
 				C020CBC01C25CA630061FAE6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,6 +326,7 @@
 				C020CBCB1C25CA640061FAE6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

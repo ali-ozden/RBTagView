@@ -16,9 +16,33 @@
     return tag;
 }
 
++ (instancetype)tagWithTitle:(NSString *)title withImage:(UIImage *)image changeImageTitlePosition:(BOOL)change{
+    RBTag * tag = [RBTag buttonWithType:UIButtonTypeCustom];
+    tag.title = title;
+    tag.image = image;
+    tag.change = change;
+    return tag;
+}
+
 - (void)setTitle:(NSString *)title {
+    [super setTitle:title forState:UIControlStateNormal];
     _title = title;
-    [self setTitle:_title forState:UIControlStateNormal];
+}
+
+- (void)setImage:(UIImage *)image{
+    [super setImage:image forState:UIControlStateNormal];
+    _image = image;
+    self.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+    self.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -5);
+}
+
+- (void)setChange:(BOOL)change{
+    _change = change;
+    if (change) {
+        self.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+        self.titleLabel.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+        self.imageView.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+    }
 }
 
 @end
@@ -49,14 +73,22 @@
     RBMargin margin = ![_tagDelegate respondsToSelector:@selector(marginInTagView:)] ? RBMarginMake(0, 0) : [_tagDelegate marginInTagView:self];
     
     CGFloat containerHeight = 0;
-    
+    CGFloat containerWidth = 0;
     for (NSUInteger i = 0; i < tagCount; i++) {
         if ([_dataSource respondsToSelector:@selector(tagView:tagAtIndex:)]) {
             RBTag *tag = [_dataSource tagView:self tagAtIndex:i];
             [_tagDelegate tagView:self willDisplayTag:tag];
-            CGSize titleSize = [tag.title sizeWithAttributes:@{NSFontAttributeName : tag.titleLabel.font}];
-            CGFloat tagWidth = titleSize.width + 10;
-            if (lastX + titleSize.width + tagSpacing > CGRectGetWidth(self.frame) - margin.sideMargin * 2) {
+            CGFloat tagWidth;
+            if (tag.image) {
+                tagWidth = [tag intrinsicContentSize].width;
+                tagWidth = tagWidth + 25;
+            }else{
+                tagWidth = [tag.title sizeWithAttributes:@{NSFontAttributeName : tag.titleLabel.font}].width;
+                tagWidth = tagWidth + 15;
+
+            }
+            
+            if (lastX + tagWidth + tagSpacing > CGRectGetWidth(self.frame) - margin.sideMargin * 2 && !_singleLine) {
                 line++;
                 lastX = 0;
             }
@@ -67,10 +99,11 @@
             
             lastX = CGRectGetMaxX(tag.frame) - margin.sideMargin;
             containerHeight = CGRectGetMaxY(tag.frame);
+            containerWidth = _singleLine ? CGRectGetMaxX(tag.frame) + margin.sideMargin : CGRectGetWidth(self.frame);
         }
     }
     
-    self.contentSize = CGSizeMake(CGRectGetWidth(self.frame), containerHeight);
+    self.contentSize = CGSizeMake(containerWidth, containerHeight);
 }
 
 - (void)chooseTag:(RBTag *)tag {
