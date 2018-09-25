@@ -10,14 +10,17 @@
 
 @implementation RBTag
 
+static CGFloat inset = 5;
+
 + (instancetype)tagWithTitle:(NSString *)title {
     RBTag * tag = [RBTag buttonWithType:UIButtonTypeCustom];
     tag.title = title;
     return tag;
 }
 
-+ (instancetype)tagWithTitle:(NSString *)title withImage:(UIImage *)image changeImageTitlePosition:(BOOL)change{
++ (instancetype)tagWithTitle:(NSString *)title withImage:(UIImage *)image changeImageTitlePosition:(BOOL)change withTitleAttrbibute:(NSDictionary * _Nullable)attribute{
     RBTag * tag = [RBTag buttonWithType:UIButtonTypeCustom];
+    tag.titleAttribute = attribute;
     tag.title = title;
     tag.image = image;
     tag.change = change;
@@ -25,23 +28,26 @@
 }
 
 - (void)setTitle:(NSString *)title {
-    [super setTitle:title forState:UIControlStateNormal];
+    if (self.titleAttribute) {
+        NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:title attributes:self.titleAttribute];
+        [super setAttributedTitle:attrStr forState:UIControlStateNormal];
+    }else{
+        [super setTitle:title forState:UIControlStateNormal];
+    }
     _title = title;
 }
 
 - (void)setImage:(UIImage *)image{
     [super setImage:image forState:UIControlStateNormal];
     _image = image;
-    self.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
-    self.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -5);
+    self.imageEdgeInsets = UIEdgeInsetsMake(0, inset, 0, 0);
+    self.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, inset);
 }
 
 - (void)setChange:(BOOL)change{
     _change = change;
     if (change) {
-        self.transform = CGAffineTransformMakeScale(-1.0, 1.0);
-        self.titleLabel.transform = CGAffineTransformMakeScale(-1.0, 1.0);
-        self.imageView.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+        self.semanticContentAttribute = UISemanticContentAttributeForceRightToLeft;
     }
 }
 
@@ -80,11 +86,17 @@
             [_tagDelegate tagView:self willDisplayTag:tag];
             CGFloat tagWidth;
             if (tag.image) {
-                tagWidth = [tag intrinsicContentSize].width;
-                tagWidth = tagWidth + 25;
+                if (tag.titleAttribute) {
+                    tagWidth = [tag.title sizeWithAttributes:tag.titleAttribute].width + [tag.image size].width+4*inset;
+                }else{
+                    tagWidth = [tag.title sizeWithAttributes:@{NSFontAttributeName : tag.titleLabel.font}].width + [tag.image size].width+4*inset;
+                }
             }else{
-                tagWidth = [tag.title sizeWithAttributes:@{NSFontAttributeName : tag.titleLabel.font}].width;
-                tagWidth = tagWidth + 15;
+                if (tag.titleAttribute) {
+                    tagWidth = [tag.title sizeWithAttributes:tag.titleAttribute].width + 2*inset;
+                }else{
+                    tagWidth = [tag.title sizeWithAttributes:@{NSFontAttributeName : tag.titleLabel.font}].width + 2*inset;;
+                }
 
             }
             

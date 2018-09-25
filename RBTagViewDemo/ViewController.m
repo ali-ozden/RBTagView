@@ -147,10 +147,12 @@
 }
 
 - (RBTag *)tagView:(RBTagView *)tagView tagAtIndex:(NSUInteger)index {
+    NSString *fontName = @"AmericanTypewriter-CondensedBold";
+    NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:fontName size:12],NSKernAttributeName:@2};
     if (tagView == self.tagViewSelected) {
-         return [RBTag tagWithTitle:self.selectedTags[index] withImage:[UIImage imageNamed:@"check"] changeImageTitlePosition:YES];
+         return [RBTag tagWithTitle:self.selectedTags[index] withImage:[UIImage imageNamed:@"check"] changeImageTitlePosition:YES withTitleAttrbibute:attributes];
     }else {
-        return [RBTag tagWithTitle:self.initialTags[index] withImage:[UIImage imageNamed:@"plus"] changeImageTitlePosition:YES];
+        return [RBTag tagWithTitle:self.initialTags[index] withImage:[UIImage imageNamed:@"plus"] changeImageTitlePosition:YES withTitleAttrbibute:attributes];
     }
    
 }
