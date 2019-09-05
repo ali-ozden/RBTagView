@@ -30,7 +30,7 @@
     [super viewDidLoad];
     
     
-    self.initialTags = [NSMutableArray arrayWithArray:@[@"iOS", @"Swift", @"Java", @"C# .net", @"PHP", @"Python", @"Golang", @"Hello World", @"C", @"C++",@"iOS", @"Swift", @"Java", @"C# .net", @"PHP", @"Python", @"Golang", @"Hello World", @"C", @"C++",@"iOS", @"Swift", @"Java", @"C# .net", @"PHP", @"Python", @"Golang", @"Hello World", @"C", @"C++",@"iOS", @"Swift", @"Java", @"C# .net", @"PHP", @"Python", @"Golang", @"Hello World", @"C", @"C++",@"iOS", @"Swift", @"Java", @"C# .net", @"PHP", @"Python", @"Golang", @"Hello World", @"C", @"C++"]];
+    self.initialTags = [NSMutableArray arrayWithArray:@[@"iOS", @"Swift", @"Java Java Java Java Java Java Java Java Java Java Java Java Java Java Java Java Java Java", @"C# .net", @"PHP", @"Python", @"Golang", @"Hello World", @"C", @"C++",@"iOS", @"Swift", @"Java", @"C# .net", @"PHP", @"Python", @"Golang", @"Hello World", @"C", @"C++",@"iOS", @"Swift", @"Java", @"C# .net", @"PHP", @"Python", @"Golang", @"Hello World", @"C", @"C++",@"iOS", @"Swift", @"Java", @"C# .net", @"PHP", @"Python", @"Golang", @"Hello World", @"C", @"C++",@"iOS", @"Swift", @"Java", @"C# .net", @"PHP", @"Python", @"Golang", @"Hello World", @"C", @"C++"]];
     
     self.selectedTags = [NSMutableArray array];
     

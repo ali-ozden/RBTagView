@@ -24,6 +24,7 @@ static CGFloat inset = 5;
     tag.title = title;
     tag.image = image;
     tag.change = change;
+    tag.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     return tag;
 }
 
@@ -98,6 +99,10 @@ static CGFloat inset = 5;
                     tagWidth = [tag.title sizeWithAttributes:@{NSFontAttributeName : tag.titleLabel.font}].width + 2*inset;;
                 }
 
+            }
+            
+            if (tagWidth > CGRectGetWidth(self.frame) - margin.sideMargin * 2) {
+                tagWidth = CGRectGetWidth(self.frame) - margin.sideMargin * 2;
             }
             
             if (lastX + tagWidth + tagSpacing > CGRectGetWidth(self.frame) - margin.sideMargin * 2 && !_singleLine) {
